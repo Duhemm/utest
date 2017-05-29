@@ -53,21 +53,24 @@ lazy val utest = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     )
   )
   .jsSettings(
-    libraryDependencies += "org.scala-js" %% "scalajs-test-interface" % scalaJSVersion
+    libraryDependencies += "org.scala-js" %% "scalajs-test-interface" % scalaJSVersion,
+    name := "utest"
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
       "org.scala-sbt" % "test-interface" % "1.0",
       "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided"
     ),
-    resolvers += Resolver.sonatypeRepo("snapshots")
+    resolvers += Resolver.sonatypeRepo("snapshots"),
+    name := "utest"
   )
   .nativeSettings(
     scalaVersion := "2.11.11",
     libraryDependencies ++= Seq(
       "org.scala-sbt" % "test-interface" % "1.0",
       "org.scala-native" %%% "scalanative-stubs" % "0.3.0-SNAPSHOT" % "provided"
-    )
+    ),
+    name := "utest"
   )
 
 def macroDependencies(version: String) =
