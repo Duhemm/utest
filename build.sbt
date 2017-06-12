@@ -13,6 +13,7 @@ releaseVcsSign     in ThisBuild := true
 
 lazy val utest = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .settings(
+    name                  := "utest",
     scalacOptions         := Seq("-Ywarn-dead-code"),
     scalacOptions in Test -= "-Ywarn-dead-code",
     libraryDependencies  ++= macroDependencies(scalaVersion.value),
@@ -53,24 +54,21 @@ lazy val utest = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     )
   )
   .jsSettings(
-    libraryDependencies += "org.scala-js" %% "scalajs-test-interface" % scalaJSVersion,
-    name := "utest"
+    libraryDependencies += "org.scala-js" %% "scalajs-test-interface" % scalaJSVersion
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
       "org.scala-sbt" % "test-interface" % "1.0",
       "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided"
     ),
-    resolvers += Resolver.sonatypeRepo("snapshots"),
-    name := "utest"
+    resolvers += Resolver.sonatypeRepo("snapshots")
   )
   .nativeSettings(
     scalaVersion := "2.11.11",
     libraryDependencies ++= Seq(
       "org.scala-sbt" % "test-interface" % "1.0",
       "org.scala-native" %%% "scalanative-stubs" % "0.3.0-SNAPSHOT" % "provided"
-    ),
-    name := "utest"
+    )
   )
 
 def macroDependencies(version: String) =
