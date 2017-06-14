@@ -66,7 +66,6 @@ lazy val utest = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .nativeSettings(
     scalaVersion := "2.11.11",
     libraryDependencies ++= Seq(
-      "org.scala-sbt" % "test-interface" % "1.0",
       "org.scala-native" %%% "test-interface" % "0.3.0-SNAPSHOT"
     )
   )
