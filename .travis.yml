@@ -1,5 +1,5 @@
 language: scala
-sudo: false
+sudo: required
 
 before_install:
   - curl https://raw.githubusercontent.com/scala-native/scala-native/v0.3.0/bin/travis_setup.sh | bash -x
